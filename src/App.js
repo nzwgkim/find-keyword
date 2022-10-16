@@ -1,24 +1,64 @@
+import React, { useEffect, useState } from 'react';
 import './App.css';
-import { useFetch } from './useFetch';
+
+//const baseUrl = 'https://www.nzkoreapost.com/bbs/board.php?bo_table=market_buynsell&sca=&sop=and&sfl=wr_subject%7C%7Cwr_content&stx=';
+// const baseUrl = 'https://www.nzkoreapost.com';
+/*
+/posts	100 posts
+/comments	500 comments
+/albums	100 albums
+/photos	5000 photos
+/todos	200 todos
+/users	10 users
+*/
 
 
-const baseUrl = 'https://jsonplaceholder.typicode.com';
+const url = 'https://jsonplaceholder.typicode.com';
 
 function App() {
-  const {data, fetchUrl} = useFetch(baseUrl, 'users');
+
+  const [data, setData] = useState(null);
+  const page = 'users'
+
+  const fetchUrl = (type) => {
+    fetch(url + '/' + type)
+      .then(res => res.json())
+      .then(res => setData(res));
+  };
 
   console.log(data);
 
 
+  useEffect(() => {
+    fetchUrl(page);
+  }, [])
+
+
+
+  const onClickUsers = () => {
+    fetchUrl('users');
+  }
+
+  const onClickPosts = () => {
+    fetchUrl('posts');
+  }
+  const onClickTodos = () => {
+    fetchUrl('todos');
+  }
   return (
-    <div>
+    <div id='useFetch'>
       <h1>useFetch</h1>
-      <button onClick={()=>fetchUrl('users')}>Users</button>
-      <button onClick={()=>fetchUrl('posts')}>Posts</button>
-      <button onClick={()=>fetchUrl('todos')}>Todos</button>
-      <pre>{JSON.stringify(data,null,2)}</pre>
+      <button onClick={onClickUsers}>users</button>
+      <button onClick={onClickPosts}>posts</button>
+      <button onClick={onClickTodos}>todos</button>
+
+      <pre>
+        {JSON.stringify(data, null, 2)}
+      </pre>
+
     </div>
   );
 }
+
 
 export default App;
