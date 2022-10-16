@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { useFetch} from './useFetch'
 import './App.css';
 
 //const baseUrl = 'https://www.nzkoreapost.com/bbs/board.php?bo_table=market_buynsell&sca=&sop=and&sfl=wr_subject%7C%7Cwr_content&stx=';
@@ -17,23 +18,7 @@ const url = 'https://jsonplaceholder.typicode.com';
 
 function App() {
 
-  const [data, setData] = useState(null);
-  const page = 'users'
-
-  const fetchUrl = (type) => {
-    fetch(url + '/' + type)
-      .then(res => res.json())
-      .then(res => setData(res));
-  };
-
-  console.log(data);
-
-
-  useEffect(() => {
-    fetchUrl(page);
-  }, [])
-
-
+  const { data, fetchUrl } = useFetch(url,'posts')
 
   const onClickUsers = () => {
     fetchUrl('users');
