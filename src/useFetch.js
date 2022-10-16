@@ -9,8 +9,6 @@ export function useFetch(base, initType) {
             .then(res => setData(res));
     };
 
-    console.log(data);
-
 
     useEffect(() => {
         fetchUrl(initType);
