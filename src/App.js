@@ -1,34 +1,46 @@
-import React from 'react';
-import { useFetch} from './useFetch'
+import React, { useReducer, useState } from 'react';
 import './App.css';
-
-//const baseUrl = 'https://www.nzkoreapost.com/bbs/board.php?bo_table=market_buynsell&sca=&sop=and&sfl=wr_subject%7C%7Cwr_content&stx=';
-// const baseUrl = 'https://www.nzkoreapost.com';
-/*
-/posts	100 posts
-/comments	500 comments
-/albums	100 albums
-/photos	5000 photos
-/todos	200 todos
-/users	10 users
-*/
-
 
 const url = 'https://jsonplaceholder.typicode.com';
 
+const USERS = 'users';
+const POSTS = 'posts';
+const TODOS = 'todos';
+const initialState = USERS;
+
+
 function App() {
+    const [data, setData] = useState(null);
 
-  const { data, fetchUrl } = useFetch(url,'posts')
-
-  const onClickUsers = () => {
-    fetchUrl('users');
+    const fetchUrl = (type) => {
+      console.log(url + '/' + type);
+        fetch(url + '/' + type)
+            .then(res => res.json())
+            .then(res => setData(res))
+            .catch(res=>console.log(res));
+    };
+    
+   function reducer(state, action){    
+    switch(action.type){
+      case USERS:
+      case POSTS:
+      case TODOS:
+        console.log(state, action.type);
+        console.log(url + '/' + action.type);
+        fetchUrl(action.type);
+        return action.type;
+    }
   }
-
+  const [state, dispatch] = useReducer(reducer, initialState);
+    
+  const onClickUsers = () => {
+    dispatch({type:USERS});
+  }
   const onClickPosts = () => {
-    fetchUrl('posts');
+    dispatch({type:POSTS});
   }
   const onClickTodos = () => {
-    fetchUrl('todos');
+    dispatch({type:TODOS});
   }
   return (
     <div id='useFetch'>
