@@ -29,6 +29,8 @@ function App() {
         console.log(url + '/' + action.type);
         fetchUrl(action.type);
         return action.type;
+      default:
+        return state;
     }
   }
   const [state, dispatch] = useReducer(reducer, initialState);
