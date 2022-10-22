@@ -1,6 +1,7 @@
 import React from 'react'
 
 export default function Profile({ image, title, name, isNew }) {
+
     return (
         <div className='profile'>
             <h1>Profile</h1>

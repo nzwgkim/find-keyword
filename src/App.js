@@ -45,8 +45,12 @@ function App() {
   const onClickTodos = () => {
     dispatch({ type: TODOS });
   }
+  const handleOnClick = e => {
+    console.log(e);
+  }
   return (
     <div id='useFetch'>
+
       <h1>useFetch</h1>
       <button onClick={onClickUsers}>users</button>
       <button onClick={onClickPosts}>posts</button>
@@ -56,7 +60,8 @@ function App() {
         {JSON.stringify(data, null, 2)}
       </pre>
 
-      <Profile isNew = 'true' image='https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGVvcGxlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60'
+      <button onClick={handleOnClick}>Click</button>
+      <Profile isNew='true' image='https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGVvcGxlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60'
         title='Engineer' name='Jessi' />
       <Profile image='https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8cGVvcGxlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60'
         title='Engineer' name='Ian' />
