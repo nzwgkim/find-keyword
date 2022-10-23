@@ -3,11 +3,12 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 // import App from './App';
 import reportWebVitals from './reportWebVitals';
-import AppCounter from './AppCounter';
+// import AppCounter from './AppCounter';
+import AppProducts from './AppProducts';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <AppCounter />
+    <AppProducts />
 );
 
 // If you want to start measuring performance in your app, pass a function
