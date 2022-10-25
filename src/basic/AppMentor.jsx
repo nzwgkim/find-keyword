@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-function AppMentor({name,title}) {
+function AppMentor() {
   const [person, setPerson] = useState({
     name:'Woody',
     title:'Developer',
@@ -9,7 +9,7 @@ function AppMentor({name,title}) {
       title:'Senior',
     },
   })
-
+    
   return (
     <div>
       <div>{person.name}'s {person.mentor.name} is ({person.mentor.title}).</div>

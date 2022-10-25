@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useReducer } from 'react';
+import personReducer from './person-reducer';
 
 const initPersion = {
   name: '엘리',
@@ -14,50 +15,60 @@ const initPersion = {
     },
   ],
 }
+const UPDATE = 'updated';
+const DELETE = 'deleted';
+const ADD = 'added';
 
+// const personRuducer = (person, action) => {
+//   const { name, title } = action;
+//   console.log(action, name, title);
+
+//   switch (action.type) {
+//     case UPDATE:{
+//      return {
+//         ...person,
+//         mentors: person.mentors.map(mentor => {
+//           if (mentor.name == name) return { ...mentor, name }
+//           return mentor;
+//         }),
+//       };
+//     }
+//     case DELETE:
+//       return {
+//         ...person,
+//         mentors: person.mentors.filter(m => m.name != name),
+//       };
+//     case ADD:
+//       return {
+//         ...person,
+//         mentors: [...person.mentors, { name, title }]
+//       };
+//     default:
+//       console.log(action.log);
+//       return person;
+//   }
+// }
 export default function AppMentor() {
-  const [person, setPerson] = useState(initPersion);
-
+  const [person, dispatch] = useReducer(personReducer, initPersion);
 
   const handleOnChange = () => {
-    const prev = prompt(`누구의 이름을 바꾸고 싶은가요?`);
-    // console.log(prev);
-    const current = prompt(`이름을 무엇으로 바꾸고 싶은가요?`);
-    // console.log(current);
-    setPerson((person) => ({
-      ...person,
-      mentors: person.mentors.map(mentor => {
-        if (mentor.name == prev) return { ...mentor, name: current }
-        return mentor;
-      })
-    }));
-
-    console.log(person.mentors);
+    const name = prompt(`Old name`);
+    const title = prompt(`New name`);
+    dispatch({ type: UPDATE, name, title })
   }
 
   const handleOnDelete = () => {
-    const name = prompt(`누구의 이름을 삭제 싶은가요?`);
-    // console.log(current);
-    setPerson((person) => ({
-      ...person,
-      mentors: person.mentors.filter(m=>m.name!=name),
-      }));
+    const name = prompt(`Select name`);
+    dispatch({ type: DELETE, name });
   }
 
-  
   const handleOnAdd = () => {
     const name = prompt(`Add name?`);
-    if(name==undefined){
+    if (name == undefined) {
       return;
     }
     const title = prompt(`Add role?`);
-    // console.log(current);
-    setPerson((person) => ({
-      ...person,
-      mentors: [...person.mentors, {name,title}]
-    }));
-
-    console.log(person.mentors);
+    dispatch({ type: ADD, name, title })
   }
 
   return (
