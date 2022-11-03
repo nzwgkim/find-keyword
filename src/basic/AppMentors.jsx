@@ -1,25 +1,26 @@
-import React, { useReducer } from 'react';
-import personReducer from './person-reducer';
+import React, { useReducer } from "react";
+import personReducer from "./person-reducer";
 
 const initPersion = {
-  name: '엘리',
-  title: '개발자',
+  name: "Woody",
+  title: "Job-finder",
   mentors: [
     {
-      name: '밥',
-      title: '시니어개발자',
+      name: "Lucas",
+      title: "Senior",
     },
     {
-      name: '제임스',
-      title: '시니어개발자',
+      name: "A",
+      title: "tester",
     },
   ],
-}
-const UPDATE = 'updated';
-const DELETE = 'deleted';
-const ADD = 'added';
+};
 
-// const personRuducer = (person, action) => {
+const UPDATE = "updated";
+const DELETE = "deleted";
+const ADD = "added";
+
+// const personReducer = (person, action) => {
 //   const { name, title } = action;
 //   console.log(action, name, title);
 
@@ -54,13 +55,13 @@ export default function AppMentor() {
   const handleOnChange = () => {
     const name = prompt(`Old name`);
     const title = prompt(`New name`);
-    dispatch({ type: UPDATE, name, title })
-  }
+    dispatch({ type: UPDATE, name, title });
+  };
 
   const handleOnDelete = () => {
     const name = prompt(`Select name`);
     dispatch({ type: DELETE, name });
-  }
+  };
 
   const handleOnAdd = () => {
     const name = prompt(`Add name?`);
@@ -68,8 +69,8 @@ export default function AppMentor() {
       return;
     }
     const title = prompt(`Add role?`);
-    dispatch({ type: ADD, name, title })
-  }
+    dispatch({ type: ADD, name, title });
+  };
 
   return (
     <div>
@@ -85,8 +86,8 @@ export default function AppMentor() {
         ))}
       </ul>
       <button onClick={handleOnChange}>멘토의 이름을 바꾸기 </button>
-      <button onClick={handleOnDelete} >멘토 삭제하기</button>
-      <button onClick={handleOnAdd} >멘토 추가하기</button>
+      <button onClick={handleOnDelete}>멘토 삭제하기</button>
+      <button onClick={handleOnAdd}>멘토 추가하기</button>
     </div>
   );
 }
