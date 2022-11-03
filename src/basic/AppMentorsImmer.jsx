@@ -1,5 +1,5 @@
 import React from "react";
-import { useImmer } from 'use-immer';
+import { useImmer } from "use-immer";
 
 const initPersion = {
   name: "Woody",
@@ -7,15 +7,14 @@ const initPersion = {
   mentors: [
     {
       name: "Lucas",
-      title: "Senior"
+      title: "Senior",
     },
     {
       name: "A",
-      title: "tester"
-    }
-  ]
+      title: "tester",
+    },
+  ],
 };
-
 
 export default function App() {
   const [person, updatePerson] = useImmer(initPersion);
@@ -24,13 +23,13 @@ export default function App() {
   const handleOnChange = () => {
     const prev = prompt(`Select mentos'name to be changed?`);
     const current = prompt(`Enter new name`);
-    if (prev == undefined && current == undefined) {
+    if (prev === undefined && current === undefined) {
       return;
     }
-    updatePerson(person => {
-      const mentor = person.mentors.find(m => m.name == prev);
+    updatePerson((person) => {
+      const mentor = person.mentors.find((m) => m.name == prev);
       mentor.name = current;
-    })
+    });
     // setPerson((person) => ({
     //   ...person,
     //   mentors: person.mentors.map((mentor) => {
@@ -46,10 +45,10 @@ export default function App() {
     if (name == undefined) {
       return;
     }
-    updatePerson(person => {
-      const index = person.mentors.findIndex(m => m.name == name);
+    updatePerson((person) => {
+      const index = person.mentors.findIndex((m) => m.name == name);
       person.mentors.splice(index, 1);
-    })
+    });
     // setPerson((person) => ({
     //   ...person,
     //   mentors: person.mentors.filter((m) => m.name != name)
@@ -63,9 +62,9 @@ export default function App() {
       return;
     }
     const title = prompt(`Add role?`);
-    updatePerson(person => {
+    updatePerson((person) => {
       person.mentors.push({ name, title });
-    })
+    });
     // setPerson((person) => ({
     //   ...person,
     //   mentors: [...person.mentors, { name, title }]
