@@ -27,7 +27,7 @@ export default function App() {
       return;
     }
     updatePerson((person) => {
-      const mentor = person.mentors.find((m) => m.name == prev);
+      const mentor = person.mentors.find((m) => m.name === prev);
       mentor.name = current;
     });
     // setPerson((person) => ({
@@ -42,11 +42,11 @@ export default function App() {
 
   const handleOnDelete = () => {
     const name = prompt(`Find the mentor's name to be deleted`);
-    if (name == undefined) {
+    if (name === undefined) {
       return;
     }
     updatePerson((person) => {
-      const index = person.mentors.findIndex((m) => m.name == name);
+      const index = person.mentors.findIndex((m) => m.name === name);
       person.mentors.splice(index, 1);
     });
     // setPerson((person) => ({
@@ -58,7 +58,7 @@ export default function App() {
 
   const handleOnAdd = () => {
     const name = prompt(`Add name?`);
-    if (name == undefined) {
+    if (name === undefined) {
       return;
     }
     const title = prompt(`Add role?`);
