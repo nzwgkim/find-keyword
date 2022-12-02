@@ -16,7 +16,7 @@ export default function AppSearch() {
       </h1>
       <form action="https://www.google.com/search" method='GET'>
         <div className="mx-auto mt-20 search-bar accordion-bodyinput-group mb-3">
-          <input type="text" className="form-control" placeholder="Google search" aria-describedby="button-addon2"/>
+          <input name='q' type="text" className="form-control" placeholder="Google search" aria-describedby="button-addon2"/>
         </div>
       </form>
     </div>
